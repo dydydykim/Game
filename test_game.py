@@ -18,3 +18,4 @@ def test_exception_when_input_type_is_wrong(game):
     assert_type_error(game, "1234")
     assert_type_error(game, "123s")
 
+    assert_type_error(game, "121")
