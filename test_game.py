@@ -5,11 +5,15 @@ import pytest
 def game():
     return Game()
 
-def test_exception_when_input_in_none(game):
-     with pytest.raises(TypeError):
-         game.guess(None)
+def assert_type_error(game, guessNumber):
+    try:
+        game.guess(guessNumber)
+        pytest.fail()
+    except TypeError:
+        pass
 
+def test_exception_when_input_type_is_wrong(game):
+    assert_type_error(game, None)
+    assert_type_error(game, "12")
+    assert_type_error(game, "1234")
 
-def test_exception_when_input_in_unmatched(game):
-    with pytest.raises(TypeError):
-        game.guess("12")
