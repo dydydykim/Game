@@ -8,3 +8,8 @@ def game():
 def test_exception_when_input_in_none(game):
      with pytest.raises(TypeError):
          game.guess(None)
+
+
+def test_exception_when_input_in_unmatched(game):
+    with pytest.raises(TypeError):
+        game.guess("12")
