@@ -2,9 +2,23 @@ from game_result import GameResult
 
 
 class Game:
+    def __init__(self):
+        self._question = ""
+
+    @property
+    def question(self):
+        raise  AttributeError("읽을 수 없는 속성")
+
+    @question.setter
+    def question(self, value):
+        self._question = value
+
     def guess(self, guess_number):
         self._assert_illegal_value(guess_number)
-        return GameResult(True, 3, 0)
+        if guess_number == self._question:
+            return GameResult(True, 3, 0)
+        return None
+
     def _assert_illegal_value(self, guess_number):
         if guess_number is None:
             raise TypeError("입력이 None 입니다.")
@@ -20,3 +34,4 @@ class Game:
 
     def _isDuplicatedNumber(self, guess_number):
         return len(set(guess_number)) != 3
+
